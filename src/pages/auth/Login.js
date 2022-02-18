@@ -6,8 +6,18 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    email: yup.string().email("Email is invalid").required("Email is required"),
+    password: yup.string().required("Password is required"),
+  })
+  .required();
 
 const Wrapper = styled("div")(({ theme }) => ({
   display: "flex",
@@ -29,6 +39,19 @@ const StyledForm = styled(Card)(({ theme }) => ({
 }));
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data) => {
+    console.log(data);
+    reset(); // ! Reset not working
+  };
+
   return (
     <Wrapper>
       <StyledForm>
@@ -39,19 +62,30 @@ const Login = () => {
         <Stack sx={{ my: 3 }} spacing={2}>
           <TextField
             label="Email"
+            {...register("email")}
+            error={Boolean(errors.email?.message)}
+            helperText={errors.email?.message}
             size="large"
-            name="email"
             type="email"
+            name="email"
             fullWidth
           />
           <TextField
+            {...register("password")}
+            error={Boolean(errors.password?.message)}
+            helperText={errors.password?.message}
             label="Password"
             size="large"
             name="password"
             type="password"
             fullWidth
           />
-          <Button size="large" variant="contained" color="secondary">
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            size="large"
+            variant="contained"
+            color="secondary"
+          >
             Lets Go 🚀
           </Button>
         </Stack>
