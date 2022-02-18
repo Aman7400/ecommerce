@@ -6,15 +6,18 @@ import reportWebVitals from "./reportWebVitals";
 import { themeOptions } from "./utils/theme.util";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { SnackbarProvider } from "notistack";
+import { BrowserRouter } from "react-router-dom";
 
 const theme = createTheme(themeOptions);
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
-      <SnackbarProvider>
-        <App />
-      </SnackbarProvider>
+      <BrowserRouter>
+        <SnackbarProvider>
+          <App />
+        </SnackbarProvider>
+      </BrowserRouter>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById("root")
