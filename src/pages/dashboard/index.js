@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 // TODO - Make Protected Route , Redirect if not logged in
 const index = () => {
   const isLoggedIn = false; // TODO: Implement LocalStorage Token
-  if (!isLoggedIn) return <Navigate to="/home" />;
+  if (!isLoggedIn) return <Navigate to="/login" />;
   return <div>Its dashboard baby</div>;
 };
 
