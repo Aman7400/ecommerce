@@ -1,15 +1,16 @@
 export const themeOptions = {
   palette: {
     type: "light",
-    // primary: {
-    //   main: "#8a39e1",
-    //   contrastText: "#ffffff",
-    // },
-    // secondary: {
-    //   main: "#f50057",
-    // },
+    primary: {
+      main: "#8C673B",
+      contrastText: "#ffffff",
+    },
+    secondary: {
+      main: "#C99B5C",
+      contrastText: "#ffffff",
+    },
     text: {
-      primary: "rgba(0,0,0,0.87)",
+      primary: "#2B2B2B",
     },
   },
   typography: {
