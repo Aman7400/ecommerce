@@ -9,6 +9,24 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    fullName: yup
+      .string()
+      .required("Full Name is Required")
+      .matches(/^[A-Za-z0-9 ]+$/, "No special characters allowed"),
+    email: yup.string().email("Email is invalid").required("Email is required"),
+    password: yup
+      .string()
+      .required("Password is required")
+      .min(4, "Password must be at least 4 characters"),
+  })
+  .required();
+
 const Wrapper = styled("div")(({ theme }) => ({
   display: "flex",
   minHeight: "100vh",
@@ -30,36 +48,63 @@ const StyledForm = styled(Card)(({ theme }) => ({
 }));
 
 const Register = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data) => {
+    console.log(data);
+    reset(); // ! Reset not working
+  };
+
   return (
     <Wrapper>
       <StyledForm>
         <Typography variant="h4">Create an Account</Typography>
         <Typography variant="body1" color="gray">
-          Please add with your credentials
+          Please add your credentials
         </Typography>
         <Stack sx={{ my: 3 }} spacing={2}>
           <TextField
+            {...register("fullName")}
             label="Full Name"
             size="large"
             name="fullName"
             type="text"
             fullWidth
+            error={Boolean(errors.fullName?.message)}
+            helperText={errors.fullName?.message}
           />
           <TextField
+            {...register("email")}
             label="Email"
             size="large"
             name="email"
             type="email"
+            error={Boolean(errors.email?.message)}
+            helperText={errors.email?.message}
             fullWidth
           />
           <TextField
+            {...register("password")}
             label="Password"
             size="large"
             name="password"
             type="password"
+            error={Boolean(errors.password?.message)}
+            helperText={errors.password?.message}
             fullWidth
           />
-          <Button size="large" variant="contained" color="primary">
+          <Button
+            onClick={handleSubmit(onSubmit)}
+            size="large"
+            variant="contained"
+            color="primary"
+          >
             Get Started 🍟
           </Button>
         </Stack>
