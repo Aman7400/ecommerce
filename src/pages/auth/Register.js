@@ -67,7 +67,7 @@ const Register = () => {
       const res = await axios.post("/user/register", data);
       console.log(res);
       enqueueSnackbar(res.data.message, { variant: "success" });
-      reset(); // ! Reset not working
+      reset({ email: "", password: "", fullName: "" });
     } catch (error) {
       console.log(error.response.data.message);
       enqueueSnackbar(error.response.data.message, { variant: "error" });
