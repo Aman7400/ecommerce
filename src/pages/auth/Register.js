@@ -12,6 +12,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import axios from "axios";
+import { useSnackbar } from "notistack";
 
 const schema = yup
   .object({
@@ -48,6 +50,8 @@ const StyledForm = styled(Card)(({ theme }) => ({
 }));
 
 const Register = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
   const {
     register,
     handleSubmit,
@@ -56,9 +60,18 @@ const Register = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
-    reset(); // ! Reset not working
+
+    try {
+      const res = await axios.post("/user/register", data);
+      console.log(res);
+      enqueueSnackbar(res.data.message, { variant: "success" });
+      reset(); // ! Reset not working
+    } catch (error) {
+      console.log(error.response.data.message);
+      enqueueSnackbar(error.response.data.message, { variant: "error" });
+    }
   };
 
   return (
