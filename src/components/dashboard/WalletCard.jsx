@@ -4,7 +4,7 @@ import React from "react";
 
 const WalletCard = () => {
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 3, display: { xs: "none", md: "block" } }}>
       <Card sx={{ p: 3, boxShadow: 2 }}>
         <Stack>
           <Typography variant="h6">Your Wallet</Typography>
