@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import LoadingScreen from "../../components/LoadingScreen";
 
 // TODO - Make Protected Route , Redirect if not logged in
 const Dashboard = () => {
@@ -31,13 +32,13 @@ const Dashboard = () => {
     }
   }
 
-  // Authenticate User
+  // * Authenticate User
   useEffect(() => {
     fetchUser();
   }, []);
 
   return isLoading ? (
-    <p>Loading</p>
+    <LoadingScreen />
   ) : (
     <>
       {!isLoggedIn ? (
