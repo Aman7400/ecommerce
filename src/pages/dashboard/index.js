@@ -22,6 +22,7 @@ import { Icon } from "@iconify/react";
 import WalletCard from "../../components/dashboard/WalletCard";
 import ReferCard from "../../components/dashboard/ReferCard";
 import SupportCard from "../../components/dashboard/SupportCard";
+import TodaySpecialCard from "../../components/dashboard/TodaySpecialCard";
 
 // * Root Wrapper
 const RootWrapper = styled("div")(({ theme }) => ({
@@ -162,13 +163,18 @@ const Dashboard = () => {
             <Grid container>
               <Grid item xs={12} lg={9}>
                 {/* Today Special */}
+                <TodaySpecialCard />
                 {/* Category */}
                 <Box sx={{ p: 3 }}>
-                  <Typography variant="h2">Caetgory</Typography>
+                  <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+                    Caetgory
+                  </Typography>
                 </Box>
                 {/* Popular Dishes */}
                 <Box sx={{ p: 3 }}>
-                  <Typography variant="h2">Popular Dishes</Typography>
+                  <Typography variant="h2" sx={{ fontWeight: "bold" }}>
+                    Popular Dishes
+                  </Typography>
                 </Box>
               </Grid>
               <Grid item xs={12} lg={3}>
