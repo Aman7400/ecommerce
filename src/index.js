@@ -6,12 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { themeOptions } from "./utils/theme.util";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { SnackbarProvider } from "notistack";
+
 import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./contexts/auth";
 
 const theme = createTheme(themeOptions);
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* // ! AuthProvider is not persistent */}
+    {/* <AuthProvider> */}
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <SnackbarProvider>
@@ -19,6 +23,7 @@ ReactDOM.render(
         </SnackbarProvider>
       </BrowserRouter>
     </ThemeProvider>
+    {/* </AuthProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -42,6 +42,7 @@ const StyledForm = styled(Card)(({ theme }) => ({
 
 const Login = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -55,8 +56,10 @@ const Login = () => {
     try {
       const res = await axios.post("/user/login", data);
       console.log(res);
+      localStorage.setItem("token", res.data.token);
       enqueueSnackbar(res.data.message, { variant: "success" });
       reset({ email: "", password: "" });
+      navigate("/");
     } catch (error) {
       console.log(error.response.data.message);
       enqueueSnackbar(error.response.data.message, { variant: "error" });
