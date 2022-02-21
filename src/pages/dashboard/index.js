@@ -23,6 +23,7 @@ import WalletCard from "../../components/dashboard/WalletCard";
 import ReferCard from "../../components/dashboard/ReferCard";
 import SupportCard from "../../components/dashboard/SupportCard";
 import TodaySpecialCard from "../../components/dashboard/TodaySpecialCard";
+import Categories from "../../components/dashboard/Categories";
 
 // * Root Wrapper
 const RootWrapper = styled("div")(({ theme }) => ({
@@ -165,10 +166,13 @@ const Dashboard = () => {
                 {/* Today Special */}
                 <TodaySpecialCard />
                 {/* Category */}
-                <Box sx={{ p: 3 }}>
+                <Box sx={{ p: 3, pb: 0 }}>
                   <Typography variant="h2" sx={{ fontWeight: "bold" }}>
                     Caetgory
                   </Typography>
+
+                  {/* Options */}
+                  <Categories />
                 </Box>
                 {/* Popular Dishes */}
                 <Box sx={{ p: 3 }}>
