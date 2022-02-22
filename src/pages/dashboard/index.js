@@ -1,23 +1,12 @@
-import {
-  AppBar,
-  Avatar,
-  Box,
-  Grid,
-  IconButton,
-  Menu,
-  MenuItem,
-  styled,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Grid, styled } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import LoadingScreen from "../../components/LoadingScreen";
-import { Icon } from "@iconify/react";
 import WalletCard from "../../components/dashboard/WalletCard";
 import ReferCard from "../../components/dashboard/ReferCard";
 import SupportCard from "../../components/dashboard/SupportCard";
+import DashboardToolbar from "../../components/dashboard/Toolbar";
 
 // * Root Wrapper
 const RootWrapper = styled("div")(({ theme }) => ({
@@ -38,8 +27,6 @@ const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
-
-  const navigate = useNavigate();
 
   async function fetchUser() {
     try {
@@ -65,15 +52,6 @@ const Dashboard = () => {
     fetchUser();
   }, []);
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return isLoading ? (
     <LoadingScreen />
   ) : (
@@ -83,67 +61,9 @@ const Dashboard = () => {
       ) : (
         <RootWrapper>
           {/* Top Nav */}
-          <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static" color="transparent" sx={{ boxShadow: 0 }}>
-              <Toolbar>
-                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  Foody
-                </Typography>
-                {/* // TODO - Add a search field*/}
 
-                {/* Menu Buttons */}
-                <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2 }}
-                >
-                  <Avatar {...stringAvatar(userProfile?.fullName)} />
-                </IconButton>
+          <DashboardToolbar user={userProfile} />
 
-                <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  sx={{ mr: 2 }}
-                >
-                  <Icon icon="akar-icons:cart" />
-                </IconButton>
-                <IconButton
-                  size="large"
-                  edge="start"
-                  color="inherit"
-                  aria-label="menu"
-                  onClick={handleClick}
-                >
-                  <Icon icon="ep:menu" />
-                </IconButton>
-                <Menu
-                  id="basic-menu"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleClose}
-                  MenuListProps={{
-                    "aria-labelledby": "basic-button",
-                  }}
-                >
-                  <MenuItem onClick={handleClose}>Profile</MenuItem>
-                  <MenuItem onClick={handleClose}>My account</MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      handleClose();
-                      localStorage.removeItem("token");
-                      navigate("/login");
-                    }}
-                  >
-                    Logout
-                  </MenuItem>
-                </Menu>
-              </Toolbar>
-            </AppBar>
-          </Box>
           {/* Content */}
           <MainContentWrapper>
             <Grid container>
@@ -168,12 +88,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
-function stringAvatar(name) {
-  return {
-    // sx: {
-    //   bgcolor: stringToColor(name),
-    // },
-    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
-  };
-}
