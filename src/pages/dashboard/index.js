@@ -2,28 +2,22 @@ import {
   AppBar,
   Avatar,
   Box,
-  Button,
-  Card,
-  Drawer,
   Grid,
   IconButton,
   Menu,
   MenuItem,
-  Stack,
   styled,
   Toolbar,
   Typography,
 } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import LoadingScreen from "../../components/LoadingScreen";
 import { Icon } from "@iconify/react";
 import WalletCard from "../../components/dashboard/WalletCard";
 import ReferCard from "../../components/dashboard/ReferCard";
 import SupportCard from "../../components/dashboard/SupportCard";
-import TodaySpecialCard from "../../components/dashboard/TodaySpecialCard";
-import Categories from "../../components/dashboard/Categories";
 
 // * Root Wrapper
 const RootWrapper = styled("div")(({ theme }) => ({
@@ -88,15 +82,6 @@ const Dashboard = () => {
         <Navigate to="/login" />
       ) : (
         <RootWrapper>
-          {/* Its dashboard baby - {JSON.stringify(userProfile)}
-          <Button
-            onClick={() => {
-              localStorage.removeItem("token");
-              navigate("/login");
-            }}
-          >
-            Logout
-          </Button> */}
           {/* Top Nav */}
           <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" color="transparent" sx={{ boxShadow: 0 }}>
@@ -163,24 +148,9 @@ const Dashboard = () => {
           <MainContentWrapper>
             <Grid container>
               <Grid item xs={12} lg={9}>
-                {/* Today Special */}
-                <TodaySpecialCard />
-                {/* Category */}
-                <Box sx={{ p: 3, pb: 0 }}>
-                  <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-                    Caetgory
-                  </Typography>
-
-                  {/* Options */}
-                  <Categories />
-                </Box>
-                {/* Popular Dishes */}
-                <Box sx={{ p: 3 }}>
-                  <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-                    Popular Dishes
-                  </Typography>
-                </Box>
+                <Outlet />
               </Grid>
+
               <Grid item xs={12} lg={3}>
                 {/* Wallet */}
                 <WalletCard />
