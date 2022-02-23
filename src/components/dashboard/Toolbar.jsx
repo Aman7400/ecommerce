@@ -2,6 +2,7 @@ import { Icon } from "@iconify/react";
 import {
   AppBar,
   Avatar,
+  Badge,
   Box,
   IconButton,
   Menu,
@@ -14,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { stringAvatar } from "../../utils/helper.util";
 
 const DashboardToolbar = ({ user }) => {
+  console.log({ user });
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -52,7 +54,9 @@ const DashboardToolbar = ({ user }) => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <Icon icon="akar-icons:cart" />
+            <Badge badgeContent={1} color="secondary">
+              <Icon icon="akar-icons:cart" />
+            </Badge>
           </IconButton>
           <IconButton
             size="large"

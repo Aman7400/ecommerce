@@ -49,7 +49,11 @@ const Dashboard = () => {
 
   // * Authenticate User
   useEffect(() => {
-    fetchUser();
+    let isMount = true;
+    if (isMount) {
+      fetchUser();
+    }
+    return () => (isMount = false);
   }, []);
 
   return isLoading ? (

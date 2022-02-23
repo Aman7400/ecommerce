@@ -5,6 +5,8 @@ import Home from "./pages/home/index";
 import Dashboard from "./pages/dashboard/index";
 import About from "./pages/About";
 import DashboardHome from "./components/dashboard/DashboardHome";
+import Category from "./components/dashboard/Category";
+import Popular from "./components/dashboard/Popular";
 
 // TODO - Make all imports Lazy, Use Suspense
 
@@ -14,8 +16,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />}>
           <Route path="/" element={<DashboardHome />} />
-          <Route path="/categories/:category" element={<p>Category</p>} />
-          <Route path="/popular/:name" element={<p>Popular</p>} />
+          <Route path="/categories/:category" element={<Category />} />
+          <Route path="/popular/:name" element={<Popular />} />
         </Route>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
