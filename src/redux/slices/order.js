@@ -14,6 +14,18 @@ const orderSlice = createSlice({
       });
       state.orders = [...temp];
     },
+    updateItemCount: (state, action) => {
+      console.log(action.payload);
+      let item = state.orders[action.payload.position];
+      console.log(item);
+      state.orders[action.payload.position] = {
+        ...item,
+        count: action.payload.count,
+      };
+    },
+    emptyCart: (state, action) => {
+      state.orders = [];
+    },
     // state : current state value ,
     // action : udpates on state,
     // payload : containsn updated values for state
@@ -22,4 +34,5 @@ const orderSlice = createSlice({
 
 export default orderSlice.reducer;
 
-export const { addItem, removeItem } = orderSlice.actions;
+export const { addItem, removeItem, updateItemCount, emptyCart } =
+  orderSlice.actions;

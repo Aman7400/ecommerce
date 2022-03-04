@@ -32,7 +32,7 @@ const DishCard = ({ dish, id }) => {
 
   // * Handle Add to cart
   function handleAddToCart(d) {
-    dispatch(addItem({ ...d }));
+    dispatch(addItem({ ...d, count: 1 }));
     enqueueSnackbar(`${d.name} added`, { variant: "success" });
   }
 
