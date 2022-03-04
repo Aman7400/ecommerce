@@ -1,19 +1,20 @@
+import * as yup from "yup";
+
 import {
   Button,
   Card,
   Stack,
-  styled,
   TextField,
   Typography,
+  styled,
 } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import React from "react";
 import axios from "axios";
+import { useForm } from "react-hook-form";
 import { useSnackbar } from "notistack";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const schema = yup
   .object({
@@ -51,6 +52,7 @@ const StyledForm = styled(Card)(({ theme }) => ({
 
 const Register = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -67,6 +69,7 @@ const Register = () => {
       const res = await axios.post("/user/register", data);
       console.log(res);
       enqueueSnackbar(res.data.message, { variant: "success" });
+      navigate("/login");
       reset({ email: "", password: "", fullName: "" });
     } catch (error) {
       console.log(error.response.data.message);
