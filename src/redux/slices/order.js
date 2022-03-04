@@ -7,6 +7,13 @@ const orderSlice = createSlice({
     addItem: (state, action) => {
       state.orders.push(action.payload);
     },
+    removeItem: (state, action) => {
+      let temp = state.orders.filter((order) => {
+        console.log(action.payload);
+        return order.name !== action.payload;
+      });
+      state.orders = [...temp];
+    },
     // state : current state value ,
     // action : udpates on state,
     // payload : containsn updated values for state
@@ -15,4 +22,4 @@ const orderSlice = createSlice({
 
 export default orderSlice.reducer;
 
-export const { addItem } = orderSlice.actions;
+export const { addItem, removeItem } = orderSlice.actions;

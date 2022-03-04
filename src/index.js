@@ -1,16 +1,17 @@
 import "./index.css";
 
 import { ThemeProvider, createTheme } from "@mui/material";
+import { persistor, store } from "./redux/store";
 
 import App from "./App";
 import { AuthProvider } from "./contexts/auth";
 import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
 import { SnackbarProvider } from "notistack";
 import reportWebVitals from "./reportWebVitals";
-import { store } from "./redux/store";
 import { themeOptions } from "./utils/theme.util";
 
 const theme = createTheme(themeOptions);
@@ -21,11 +22,13 @@ ReactDOM.render(
     {/* <AuthProvider> */}
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <BrowserRouter>
-          <SnackbarProvider>
-            <App />
-          </SnackbarProvider>
-        </BrowserRouter>
+        <PersistGate loading={null} persistor={persistor}>
+          <BrowserRouter>
+            <SnackbarProvider>
+              <App />
+            </SnackbarProvider>
+          </BrowserRouter>
+        </PersistGate>
       </Provider>
     </ThemeProvider>
     {/* </AuthProvider> */}

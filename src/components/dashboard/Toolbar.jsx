@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 const DashboardToolbar = ({ user }) => {
   // console.log({ user });
   const navigate = useNavigate();
-  const totalOrders = useSelector((state) => state.order.orders);
+  const totalOrders = useSelector((state) => state.orders);
 
   // * Handle More Menu
   const [anchorEl, setAnchorEl] = useState(null);
