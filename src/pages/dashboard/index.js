@@ -1,12 +1,13 @@
 import { Grid, styled } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import React, { useCallback, useEffect, useState } from "react";
+
+import DashboardToolbar from "../../components/dashboard/Toolbar";
 import LoadingScreen from "../../components/LoadingScreen";
-import WalletCard from "../../components/dashboard/WalletCard";
 import ReferCard from "../../components/dashboard/ReferCard";
 import SupportCard from "../../components/dashboard/SupportCard";
-import DashboardToolbar from "../../components/dashboard/Toolbar";
+import WalletCard from "../../components/dashboard/WalletCard";
+import axios from "axios";
 
 // * Root Wrapper
 const RootWrapper = styled("div")(({ theme }) => ({
@@ -28,13 +29,14 @@ const Dashboard = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
 
-  async function fetchUser() {
+  const fetchUser = useCallback(async () => {
     try {
       if (token) {
         setIsLoading(true);
         const res = await axios.get("/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log({ res });
         setIsLoggedIn(true);
         setUserProfile(res.data.user);
         setIsLoading(false);
@@ -45,7 +47,7 @@ const Dashboard = () => {
       console.log(error.message);
       setIsLoading(false);
     }
-  }
+  }, [token]);
 
   // * Authenticate User
   useEffect(() => {

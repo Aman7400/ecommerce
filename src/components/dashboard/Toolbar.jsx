@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import {
   AppBar,
   Avatar,
@@ -11,13 +10,19 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+import CheckoutModal from "../checkout/CheckoutModal";
+import { Icon } from "@iconify/react";
 import { stringAvatar } from "../../utils/helper.util";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const DashboardToolbar = ({ user }) => {
-  console.log({ user });
+  // console.log({ user });
   const navigate = useNavigate();
+  const totalOrders = useSelector((state) => state.order.orders);
 
+  // * Handle More Menu
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -26,6 +31,9 @@ const DashboardToolbar = ({ user }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  // * Handle Checkout
+  const [openCheckout, setCheckout] = useState(false);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -53,11 +61,13 @@ const DashboardToolbar = ({ user }) => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={() => setCheckout(true)}
           >
-            <Badge badgeContent={1} color="secondary">
+            <Badge badgeContent={totalOrders.length} color="secondary">
               <Icon icon="akar-icons:cart" />
             </Badge>
           </IconButton>
+          <CheckoutModal open={openCheckout} setCheckout={setCheckout} />
           <IconButton
             size="large"
             edge="start"

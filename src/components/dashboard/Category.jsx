@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { useParams } from "react-router-dom";
 import DishCard from "../dishes/DishCard";
+import { pizza, burger, fries } from "../../utils/data.utils";
 
 const Wrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(3),
@@ -42,12 +43,22 @@ function HeadingCrumbs({ category }) {
 }
 
 function CategoryGrid({ category }) {
+  let dishes = [];
+
+  if (category === "fries") {
+    dishes = [...fries];
+  } else if (category === "burger") {
+    dishes = [...burger];
+  } else {
+    dishes = [...pizza];
+  }
+
   return (
     <Box sx={{ my: 3 }}>
       <Grid container spacing={5}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((_, id) => (
+        {dishes.map((dish, id) => (
           <Grid item xs={12} md={6} lg={4} key={id}>
-            <DishCard dish={category} />
+            <DishCard dish={dish} id={id} />
           </Grid>
         ))}
       </Grid>

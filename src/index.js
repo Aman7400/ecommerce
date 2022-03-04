@@ -1,14 +1,17 @@
+import "./index.css";
+
+import { ThemeProvider, createTheme } from "@mui/material";
+
+import App from "./App";
+import { AuthProvider } from "./contexts/auth";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { themeOptions } from "./utils/theme.util";
-import { ThemeProvider, createTheme } from "@mui/material";
 import { SnackbarProvider } from "notistack";
-
-import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./contexts/auth";
+import reportWebVitals from "./reportWebVitals";
+import { store } from "./redux/store";
+import { themeOptions } from "./utils/theme.util";
 
 const theme = createTheme(themeOptions);
 
@@ -17,11 +20,13 @@ ReactDOM.render(
     {/* // ! AuthProvider is not persistent */}
     {/* <AuthProvider> */}
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <SnackbarProvider>
-          <App />
-        </SnackbarProvider>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <SnackbarProvider>
+            <App />
+          </SnackbarProvider>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
     {/* </AuthProvider> */}
   </React.StrictMode>,

@@ -1,6 +1,10 @@
+import { Card, IconButton, Stack, Typography, styled } from "@mui/material";
+
 import { Icon } from "@iconify/react";
-import { Card, IconButton, Stack, styled, Typography } from "@mui/material";
 import React from "react";
+import { addItem } from "../../redux/slices/order";
+import { useDispatch } from "react-redux";
+import { useSnackbar } from "notistack";
 
 const StyledCard = styled(Card)(({ theme }) => ({
   backgroundColor: "#000",
@@ -19,8 +23,19 @@ const StyledCard = styled(Card)(({ theme }) => ({
   },
 }));
 
-const DishCard = ({ dish }) => {
+const DishCard = ({ dish, id }) => {
   //   const { name, src, price } = dish;
+
+  const dispatch = useDispatch();
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  // * Handle Add to cart
+  function handleAddToCart(d) {
+    dispatch(addItem(d.name));
+    enqueueSnackbar(`${d.name} added`, { variant: "success" });
+  }
+
   return (
     <StyledCard>
       {/* {name || "DishName"}
@@ -31,13 +46,19 @@ const DishCard = ({ dish }) => {
       </section>
       <Stack>
         <Typography variant="h4" color="white">
-          {dish}
+          {dish.name}
         </Typography>
         <Stack direction="row" sx={{ alignItems: "center" }}>
           <Typography variant="h6" color="white">
-            $100.00
+            ${dish.price}
           </Typography>
-          <IconButton size="large" sx={{ color: "#fff" }}>
+          <IconButton
+            onClick={() => {
+              handleAddToCart(dish);
+            }}
+            size="large"
+            sx={{ color: "#fff" }}
+          >
             <Icon icon="bxs:message-square-add" />
           </IconButton>
         </Stack>
