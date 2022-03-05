@@ -12,7 +12,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
-import CheckoutModal from "../checkout/CheckoutModal";
 import { Icon } from "@iconify/react";
 import { stringAvatar } from "../../utils/helper.util";
 import { useSelector } from "react-redux";
@@ -31,9 +30,6 @@ const DashboardToolbar = ({ user }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  // * Handle Checkout
-  const [openCheckout, setCheckout] = useState(false);
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -63,13 +59,12 @@ const DashboardToolbar = ({ user }) => {
             sx={{ mr: 2 }}
             component={Link}
             to="/cart"
-            // onClick={() => setCheckout(true)}
           >
             <Badge badgeContent={totalOrders.length} color="secondary">
               <Icon icon="akar-icons:cart" />
             </Badge>
           </IconButton>
-          {/* <CheckoutModal open={openCheckout} setCheckout={setCheckout} /> */}
+
           <IconButton
             size="large"
             edge="start"

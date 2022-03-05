@@ -26,13 +26,14 @@ import TableRow from "@mui/material/TableRow";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
-export default function NewCart() {
+export default function CartTable() {
   const orders = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { enqueueSnackbar } = useSnackbar();
 
+  // *  Calculate the total
   const amt = orders.reduce(
     (a, v) => (a = Number(a) + Number(v.price) * Number(v.count)),
     0
@@ -43,7 +44,6 @@ export default function NewCart() {
     dispatch(emptyCart());
     enqueueSnackbar("Order Placed 🥳", { variant: "success" });
     navigate("/");
-    // handleClose();
   };
 
   const handleDelete = (uid) => {
@@ -131,9 +131,7 @@ export default function NewCart() {
           </TableRow>
           <TableRow>
             <TableCell colSpan={3} />
-            {/* <TableCell align="right">
-              <Typography variant="h5">Subtotal</Typography>
-            </TableCell> */}
+
             <TableCell align="right">
               <Typography variant="h5">
                 {" "}
