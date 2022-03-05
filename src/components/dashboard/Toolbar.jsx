@@ -9,12 +9,12 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import CheckoutModal from "../checkout/CheckoutModal";
 import { Icon } from "@iconify/react";
 import { stringAvatar } from "../../utils/helper.util";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const DashboardToolbar = ({ user }) => {
@@ -61,13 +61,15 @@ const DashboardToolbar = ({ user }) => {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-            onClick={() => setCheckout(true)}
+            component={Link}
+            to="/cart"
+            // onClick={() => setCheckout(true)}
           >
             <Badge badgeContent={totalOrders.length} color="secondary">
               <Icon icon="akar-icons:cart" />
             </Badge>
           </IconButton>
-          <CheckoutModal open={openCheckout} setCheckout={setCheckout} />
+          {/* <CheckoutModal open={openCheckout} setCheckout={setCheckout} /> */}
           <IconButton
             size="large"
             edge="start"
@@ -87,7 +89,7 @@ const DashboardToolbar = ({ user }) => {
             }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My account</MenuItem>
+            <MenuItem onClick={handleClose}>My Orders</MenuItem>
             <MenuItem
               onClick={() => {
                 handleClose();
