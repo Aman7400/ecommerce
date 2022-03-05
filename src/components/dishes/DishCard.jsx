@@ -1,4 +1,11 @@
-import { Card, IconButton, Stack, Typography, styled } from "@mui/material";
+import {
+  Button,
+  Card,
+  IconButton,
+  Stack,
+  Typography,
+  styled,
+} from "@mui/material";
 
 import { Icon } from "@iconify/react";
 import React from "react";
@@ -38,29 +45,33 @@ const DishCard = ({ dish, id }) => {
 
   return (
     <StyledCard>
-      {/* {name || "DishName"}
-      {src || "Something"}
-      {price || "123456"} */}
       <section className="img-wrapper">
-        <img src="/assets/dish.png" alt="Dish" />
+        <img src={`/assets/${dish.src}`} alt="Dish" />
       </section>
-      <Stack>
-        <Typography variant="h4" color="white">
+      <Stack sx={{ my: 1 }}>
+        <Typography
+          variant="h4"
+          sx={{ textTransform: "capitalize" }}
+          color="white"
+        >
           {dish.name}
         </Typography>
-        <Stack direction="row" sx={{ alignItems: "center" }}>
-          <Typography variant="h6" color="white">
+        <Stack spacing={1}>
+          <Typography sx={{ textAlign: "end" }} variant="body1" color="white">
             ${dish.price}
           </Typography>
-          <IconButton
+          <Button
             onClick={() => {
               handleAddToCart(dish);
             }}
             size="large"
-            sx={{ color: "#fff" }}
+            color="secondary"
+            variant="contained"
+            endIcon={<Icon icon="bxs:message-square-add" />}
           >
-            <Icon icon="bxs:message-square-add" />
-          </IconButton>
+            Add To Cart
+            {/* <Icon icon="bxs:message-square-add" /> */}
+          </Button>
         </Stack>
       </Stack>
     </StyledCard>
