@@ -4,7 +4,6 @@ import { ThemeProvider, createTheme } from "@mui/material";
 import { persistor, store } from "./redux/store";
 
 import App from "./App";
-import { AuthProvider } from "./contexts/auth";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 import { Provider } from "react-redux";
@@ -18,8 +17,6 @@ const theme = createTheme(themeOptions);
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* // ! AuthProvider is not persistent */}
-    {/* <AuthProvider> */}
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
@@ -31,7 +28,6 @@ ReactDOM.render(
         </PersistGate>
       </Provider>
     </ThemeProvider>
-    {/* </AuthProvider> */}
   </React.StrictMode>,
   document.getElementById("root")
 );

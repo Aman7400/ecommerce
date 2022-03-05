@@ -56,7 +56,7 @@ const Dashboard = () => {
       fetchUser();
     }
     return () => (isMount = false);
-  }, []);
+  }, [fetchUser]);
 
   return isLoading ? (
     <LoadingScreen />

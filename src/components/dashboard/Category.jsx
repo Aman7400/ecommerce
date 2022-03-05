@@ -1,15 +1,9 @@
-import {
-  Box,
-  Breadcrumbs,
-  Grid,
-  Link,
-  styled,
-  Typography,
-} from "@mui/material";
+import { Box, Breadcrumbs, Grid, Link, styled } from "@mui/material";
+import { burger, fries, pizza } from "../../utils/data.utils";
+
+import DishCard from "../dishes/DishCard";
 import React from "react";
 import { useParams } from "react-router-dom";
-import DishCard from "../dishes/DishCard";
-import { pizza, burger, fries } from "../../utils/data.utils";
 
 const Wrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(3),
