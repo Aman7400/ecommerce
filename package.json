@@ -1,7 +1,7 @@
 {
   "name": "ecommerce",
   "version": "0.1.0",
-  "proxy": "http://localhost:8000/api",
+  "proxy": "https://foody-ecommerce-api.herokuapp.com/api",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
