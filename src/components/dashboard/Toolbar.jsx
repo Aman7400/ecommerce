@@ -84,7 +84,14 @@ const DashboardToolbar = ({ user }) => {
             }}
           >
             <MenuItem onClick={handleClose}>Profile</MenuItem>
-            <MenuItem onClick={handleClose}>My Orders</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                navigate("/orders");
+              }}
+            >
+              My Orders
+            </MenuItem>
             <MenuItem
               onClick={() => {
                 handleClose();

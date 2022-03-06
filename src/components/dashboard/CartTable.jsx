@@ -23,6 +23,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
@@ -39,11 +40,28 @@ export default function CartTable() {
     0
   );
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     console.log({ orders, amt });
-    dispatch(emptyCart());
-    enqueueSnackbar("Order Placed 🥳", { variant: "success" });
-    navigate("/");
+
+    const token = localStorage.getItem("token");
+
+    try {
+      const res = await axios.post(
+        "/orders/new",
+        { amt, items: orders },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log({ res });
+
+      dispatch(emptyCart());
+      enqueueSnackbar("Order Placed 🥳", { variant: "success" });
+      navigate("/");
+    } catch (error) {
+      console.log({ error });
+    }
   };
 
   const handleDelete = (uid) => {
