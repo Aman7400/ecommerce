@@ -9,6 +9,7 @@ import Home from "./pages/home/index";
 import Login from "./pages/auth/Login";
 import OrderList from "./components/dashboard/OrderList";
 import Popular from "./components/dashboard/Popular";
+import Profile from "./components/dashboard/Profile";
 import Register from "./pages/auth/Register";
 
 // TODO - Make all imports Lazy, Use Suspense
@@ -23,6 +24,7 @@ function App() {
           <Route path="/popular/:name" element={<Popular />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<OrderList />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />

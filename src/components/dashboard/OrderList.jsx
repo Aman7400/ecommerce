@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
+import SectionHeader from "./SectionHeader";
 import axios from "axios";
 import { format } from "date-fns";
 
@@ -38,25 +39,8 @@ const OrderList = () => {
 
   return (
     <Box sx={{ p: 5 }}>
-      <Stack
-        direction="row"
-        sx={{ justifyContent: "space-between", alignItems: "center" }}
-      >
-        <Typography variant="h2" sx={{ fontWeight: "bold" }}>
-          Your Orders
-        </Typography>
-        <Button
-          component={Link}
-          to="/"
-          variant="contained"
-          color="secondary"
-          endIcon={<Icon icon="ic:baseline-fastfood" />}
-          size="large"
-        >
-          Back to Menu
-        </Button>
-      </Stack>
-
+      {/* Header */}
+      <SectionHeader heading="Your Orders" />
       <Box>
         <Grid container spacing={2} sx={{ my: 5 }}>
           {orders.map((order, i) => (

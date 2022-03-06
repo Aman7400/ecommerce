@@ -4,6 +4,7 @@ import CartTable from "./CartTable";
 import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import React from "react";
+import SectionHeader from "./SectionHeader";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
@@ -13,24 +14,7 @@ const Cart = () => {
     <Box sx={{ p: 5 }}>
       {totalOrders.length > 0 ? (
         <>
-          <Stack
-            direction="row"
-            sx={{ justifyContent: "space-between", alignItems: "center" }}
-          >
-            <Typography variant="h2" sx={{ fontWeight: "bold", mb: 1 }}>
-              Your Cart
-            </Typography>
-            <Button
-              component={Link}
-              to="/"
-              variant="contained"
-              color="secondary"
-              endIcon={<Icon icon="ic:baseline-fastfood" />}
-              size="large"
-            >
-              Back to Menu
-            </Button>
-          </Stack>
+          <SectionHeader heading="Your Cart" />
           <CartTable />
         </>
       ) : (

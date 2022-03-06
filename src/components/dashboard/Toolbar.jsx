@@ -83,7 +83,14 @@ const DashboardToolbar = ({ user }) => {
               "aria-labelledby": "basic-button",
             }}
           >
-            <MenuItem onClick={handleClose}>Profile</MenuItem>
+            <MenuItem
+              onClick={() => {
+                handleClose();
+                navigate("/profile");
+              }}
+            >
+              Profile
+            </MenuItem>
             <MenuItem
               onClick={() => {
                 handleClose();
