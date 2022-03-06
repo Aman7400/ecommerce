@@ -48,7 +48,7 @@ const DashboardToolbar = ({ user }) => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <Avatar {...stringAvatar(user?.fullName)} />
+            <Avatar src={user?.profilePic} />
           </IconButton>
 
           <IconButton

@@ -74,7 +74,7 @@ const Dashboard = () => {
           <MainContentWrapper>
             <Grid container>
               <Grid item xs={12} lg={9}>
-                <Outlet />
+                <Outlet context={{ user: userProfile }} />
               </Grid>
 
               <Grid item xs={12} lg={3}>
