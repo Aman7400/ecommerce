@@ -63,7 +63,7 @@ const Dashboard = () => {
   ) : (
     <>
       {!isLoggedIn ? (
-        <Navigate to="/login" />
+        <Navigate to="/home" />
       ) : (
         <RootWrapper>
           {/* Top Nav */}

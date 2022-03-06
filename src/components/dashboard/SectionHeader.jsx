@@ -7,8 +7,11 @@ import React from "react";
 const SectionHeader = ({ heading }) => {
   return (
     <Stack
-      direction="row"
-      sx={{ justifyContent: "space-between", alignItems: "center" }}
+      direction={{ xs: "column", sm: "row" }}
+      sx={{
+        justifyContent: { xs: "center", sm: "space-between" },
+        alignItems: { xs: "start", sm: "center" },
+      }}
     >
       <Typography variant="h2" sx={{ fontWeight: "bold" }}>
         {heading}

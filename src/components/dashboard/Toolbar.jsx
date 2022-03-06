@@ -103,7 +103,7 @@ const DashboardToolbar = ({ user }) => {
               onClick={() => {
                 handleClose();
                 localStorage.removeItem("token");
-                navigate("/login");
+                navigate("/home");
               }}
             >
               Logout
