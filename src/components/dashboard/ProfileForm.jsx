@@ -1,5 +1,3 @@
-import * as yup from "yup";
-
 import {
   Box,
   Button,
@@ -10,12 +8,12 @@ import {
   styled,
 } from "@mui/material";
 import React, { useState } from "react";
-import { useNavigate, useOutletContext } from "react-router-dom";
 
 import { Icon } from "@iconify/react";
 import axios from "axios";
 import { profileSchema } from "../../utils/yup/schemas";
 import { useForm } from "react-hook-form";
+import { useOutletContext } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -39,12 +37,12 @@ export function ProfileForm() {
   };
 
   const { enqueueSnackbar } = useSnackbar();
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    reset,
-    setValue,
+    // reset,
+    // setValue,
     formState: { errors },
   } = useForm({
     defaultValues,

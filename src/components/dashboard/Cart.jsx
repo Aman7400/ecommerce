@@ -1,7 +1,6 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 
 import CartTable from "./CartTable";
-import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import React from "react";
 import SectionHeader from "./SectionHeader";

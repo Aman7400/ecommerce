@@ -13,7 +13,6 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 
 import { Icon } from "@iconify/react";
-import { stringAvatar } from "../../utils/helper.util";
 import { useSelector } from "react-redux";
 
 const DashboardToolbar = ({ user }) => {
