@@ -62,12 +62,16 @@ export function ProfileForm() {
       formData.append("postalCode", data.postalCode);
       formData.append("mobileNo", data.mobileNo);
 
-      const res = await axios.post("/user/profile", formData, {
-        enctype: "multipart/form-data",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/profile`,
+        formData,
+        {
+          enctype: "multipart/form-data",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       // const res = await axios.post("/user/login", data);
       console.log(res);
@@ -195,7 +199,7 @@ function ImageUpload({ image, setImage }) {
             objectFit: "center",
             padding: "1rem",
           }}
-          src={image.preview}
+          src={`${process.env.REACT_APP_BACKEND_URL}${image.preview}`}
           alt=""
         />
       </Box>

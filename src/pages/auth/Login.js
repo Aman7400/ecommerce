@@ -56,7 +56,10 @@ const Login = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const res = await axios.post("/user/login", data);
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/login`,
+        data
+      );
       console.log(res);
       localStorage.setItem("token", res.data.token);
       enqueueSnackbar(res.data.message, { variant: "success" });

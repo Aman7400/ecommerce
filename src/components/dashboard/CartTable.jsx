@@ -47,7 +47,7 @@ export default function CartTable() {
 
     try {
       const res = await axios.post(
-        "/orders/new",
+        `${process.env.REACT_APP_BACKEND_URL}/orders/new`,
         { amt, items: orders },
         {
           headers: { Authorization: `Bearer ${token}` },

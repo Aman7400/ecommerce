@@ -33,9 +33,12 @@ const Dashboard = () => {
     try {
       if (token) {
         setIsLoading(true);
-        const res = await axios.get("/user/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/user/profile`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         console.log({ res });
         setIsLoggedIn(true);
         setUserProfile(res.data.user);

@@ -12,9 +12,12 @@ const OrderList = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await axios.get("/orders/all", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/orders/all`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       console.log({ res });
       setOrder(res.data.orders);

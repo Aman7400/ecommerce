@@ -66,7 +66,10 @@ const Register = () => {
     console.log(data);
 
     try {
-      const res = await axios.post("/user/register", data);
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/user/register`,
+        data
+      );
       console.log(res);
       enqueueSnackbar(res.data.message, { variant: "success" });
       navigate("/login");

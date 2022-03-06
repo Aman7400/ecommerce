@@ -47,7 +47,9 @@ const DashboardToolbar = ({ user }) => {
             aria-label="menu"
             sx={{ mr: 2 }}
           >
-            <Avatar src={user?.profilePic} />
+            <Avatar
+              src={`${process.env.REACT_APP_BACKEND_URL}${user?.profilePic}`}
+            />
           </IconButton>
 
           <IconButton
